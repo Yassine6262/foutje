@@ -150,7 +150,6 @@ function PrintCrudBier($result){
         foreach ($row as $cell) {
             $table .= "<td>" . $cell . "</td>";
         }
-      
         
         // Wijzig knopje
         $table .= "<td>". 
@@ -159,7 +158,11 @@ function PrintCrudBier($result){
             </form>" . "</td>";
 
         // Delete via linkje href
-        $table .= '<td><a href="delete_bier.php?biercode='.$row["biercode"].'">verwijder</a></td>';
+        $table .= "<td>". 
+        "<form method='post' action='update_bier.php?biercode=$row[biercode]' >       
+                <button name='vwd'>verwijder</button>	 
+        </form>" . "</td>";
+        
         
         $table .= "</tr>";
     }
