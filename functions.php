@@ -1,5 +1,5 @@
 <?php
-// auteur: Wigmans
+// auteur: yassine
 // functie: algemene functies tbv hergebruik
  function ConnectDb(){
     $servername = "localhost";
@@ -159,7 +159,7 @@ function PrintCrudBier($result){
 
         // Delete via linkje href
         $table .= "<td>". 
-        "<form method='post' action='update_bier.php?biercode=$row[biercode]' >       
+        "<form method='post' action='delete_bier.php?biercode=$row[biercode]' >       
                 <button name='vwd'>verwijder</button>	 
         </form>" . "</td>";
         
@@ -172,14 +172,34 @@ function PrintCrudBier($result){
 }
 
 
-function UpdateBier($row){
-    echo "Update row<br>";
-    var_dump($row);
-}
 
-function DeleteBier($biercode){
-    echo "Delete row<br>";
-    var_dump($biercode);
-}
-
+    function UpdateBier($row){
+        echo "Update row<br>";
+    
+        $conn = ConnectDb();
+    
+        $sql = "UPDATE `bier` 
+        SET 
+        `naam` = '$row[naam]', 
+        `soort` = '$row[soort]', 
+        `stijl` = '$row[stijl]', 
+        `alcohol` = '$row[alcohol]', 
+        `brouwcode` = '$row[biercode]'
+        FROM bier
+        WHERE `bier`.`biercode` = $row[biercode]";
+        $query = $conn->prepare($sql);
+       
+    }
+    // Delete function om cells te verwijderen in een colom //
+    function DeleteBier($row){
+        echo "delete row<br>";
+    
+        $conn = ConnectDb();
+    
+        $sql = "DELETE 
+        FROM bier
+        WHERE `bier`.`biercode` = $row[biercode]";
+        $query = $conn->prepare($sql);
+        $query->execute();
+    }
 ?>

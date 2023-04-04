@@ -23,7 +23,7 @@
 <html>
     <body>
         <form method="post">
-        Biercode:<input type="" name="biercode" value="<?php echo $row['biercode'];?>"><br>
+          Biercode:<input type="" name="biercode" value="<?php echo $row['biercode'];?>"><br>
         Naam:<input type="" name="naam" value="<?php echo $row['naam'];?>"><br> 
         Soort: <input type="text" name="soort" value="<?= $row['soort']?>"><br>
         Stijl: <input type="text" name="stijl" value="<?= $row['stijl']?>"><br>
